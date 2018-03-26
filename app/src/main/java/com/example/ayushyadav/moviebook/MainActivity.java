@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -37,29 +38,31 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         fetchData();
     }
     private void fetchData() {
 
-        Call<imdbData> call = ApiClient.getInstance().getApiCallInterface().getData();
+        Call<MoviesList> call = ApiClient.getInstance().getApiCallInterface().getData();
 
-        call.enqueue(new Callback<imdbData>() {
+        call.enqueue(new Callback<MoviesList>() {
             @Override
-            public void onResponse(Call<imdbData> call, Response<imdbData> response) {
-                imdbData data = response.body();
+            public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
+                Log.d("onRespose", "Function is working");
+
+                MoviesList data = response.body();
 
                 if(data != null){
                     arrayList.clear();
-                    arrayList.add(data);
+                    arrayList.addAll(data.results);
                     recyclerAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(Call<imdbData> call, Throwable t) {
+            public void onFailure(Call<MoviesList> call, Throwable t) {
                 Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
             }
 

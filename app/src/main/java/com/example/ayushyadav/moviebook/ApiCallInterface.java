@@ -12,6 +12,6 @@ import retrofit2.http.GET;
 public interface ApiCallInterface {
 
     @GET("movie/now_playing?api_key=" + Key.apiKey + "&language=en-US&page=1")
-    Call<imdbData> getData();
+    Call<MoviesList> getData();
 
 }

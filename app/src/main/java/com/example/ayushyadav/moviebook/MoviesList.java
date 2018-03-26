@@ -1,5 +1,7 @@
 package com.example.ayushyadav.moviebook;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 
 public class MoviesList {
 
+    @SerializedName("results")
     ArrayList<imdbData> results;
 
 }
