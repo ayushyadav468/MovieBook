@@ -19,9 +19,9 @@ import java.util.ArrayList;
 public class RecyclerListViewAdapter extends RecyclerView.Adapter<RecyclerListViewAdapter.UserViewHolder>{
 
     Context context;
-    ArrayList<imdbData> dataArraylist;
+    ArrayList<imdbData.nowShowingData> dataArraylist;
 
-    public RecyclerListViewAdapter(Context context, ArrayList<imdbData> dataArraylist) {
+    public RecyclerListViewAdapter(Context context, ArrayList<imdbData.nowShowingData> dataArraylist) {
         this.context = context;
         this.dataArraylist = dataArraylist;
     }
@@ -29,19 +29,18 @@ public class RecyclerListViewAdapter extends RecyclerView.Adapter<RecyclerListVi
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = layoutInflater.inflate(R.layout.intheaters_layout, parent,false);
+        View itemView = layoutInflater.inflate(R.layout.now_showing_layout, parent,false);
         UserViewHolder holder = new UserViewHolder(itemView);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(final UserViewHolder holder, int position) {
-        imdbData data = dataArraylist.get(position);
+        imdbData.nowShowingData data = dataArraylist.get(position);
         holder.title.setText(data.getTitle());
-        holder.releasedDate.setText(data.getReleasedDate());
-        holder.language.setText(data.getLanguage());
-        Picasso.get().load(data.getPoster()).into(holder.poster);
-        Picasso.get().load(data.getImage()).into(holder.image);
+        holder.stars.setText(data.getStars());
+        holder.genre.setText((CharSequence) data.getGenre());
+        Picasso.get().load(Key.posterSizeURL + data.getPoster()).into(holder.poster);
     }
 
     @Override
@@ -52,9 +51,8 @@ public class RecyclerListViewAdapter extends RecyclerView.Adapter<RecyclerListVi
     class UserViewHolder extends RecyclerView.ViewHolder{
 
         TextView title;
-        TextView releasedDate;
-        TextView language;
-        ImageView image;
+        TextView stars;
+        TextView genre;
         ImageView poster;
         View itemView;
 
@@ -62,9 +60,8 @@ public class RecyclerListViewAdapter extends RecyclerView.Adapter<RecyclerListVi
             super(itemView);
             this.itemView = itemView;
             title = itemView.findViewById(R.id.titleTextView);
-            releasedDate = itemView.findViewById(R.id.yearReleasedTextView);
-            language = itemView.findViewById(R.id.languageTextView);
-            image = itemView.findViewById(R.id.movieImage);
+            stars = itemView.findViewById(R.id.starsTextView);
+            genre = itemView.findViewById(R.id.genreTextView);
             poster = itemView.findViewById(R.id.moviePoster);
         }
     }

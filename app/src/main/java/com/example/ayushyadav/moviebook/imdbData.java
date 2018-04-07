@@ -2,25 +2,28 @@ package com.example.ayushyadav.moviebook;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by ayushyadav on 20/03/18.
  */
 
 public class imdbData {
 
+    class nowShowingData {
         @SerializedName("title")
         private String title;
-        @SerializedName("release_date")
-        private String releasedDate;
-        @SerializedName("original_language")
-        private String language;
+        @SerializedName("genre_ids")
+        private List<Genres> genre;
+        @SerializedName("vote_average")
+        private String stars;
         @SerializedName("poster_path")
         private String poster;
 
-        public imdbData(String title, String releasedDate, String language, String poster) {
+        public nowShowingData(String title, List<Genres> genre, String stars, String poster) {
             this.title = title;
-            this.releasedDate = releasedDate;
-            this.language = language;
+            this.genre = genre;
+            this.stars = stars;
             this.poster = poster;
         }
 
@@ -32,20 +35,20 @@ public class imdbData {
             this.title = title;
         }
 
-        public String getReleasedDate() {
-            return releasedDate;
+        public List<Genres> getGenre() {
+            return genre;
         }
 
-        public void setReleasedDate(String releasedDate) {
-            this.releasedDate = releasedDate;
+        public void setGenre(List<Genres> genre) {
+            this.genre = genre;
         }
 
-        public String getLanguage() {
-            return language;
+        public String getStars() {
+            return stars;
         }
 
-        public void setLanguage(String language) {
-            this.language = language;
+        public void setStars(String stars) {
+            this.stars = stars;
         }
 
         public String getPoster() {
@@ -55,13 +58,14 @@ public class imdbData {
         public void setPoster(String poster) {
             this.poster = poster;
         }
+    }
 
-        public String getImage() {
-            return poster;
-        }
+    class upcomingData{
 
-        public void setImage(String poster) {
-            this.poster = poster;
-        }
+    }
+
+    class topRatedData{
+
+    }
 
 }

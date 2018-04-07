@@ -11,6 +11,6 @@ import java.util.ArrayList;
 public class MoviesList {
 
     @SerializedName("results")
-    ArrayList<imdbData> results;
+    ArrayList<imdbData.nowShowingData> results;
 
 }

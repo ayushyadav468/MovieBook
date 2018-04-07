@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#0a7800</color>
     <color name="colorAccent">#FF4081</color>
     <color name="blackColor">#FF000000</color>
+
+    <color name="colorNavigationDrawerBackgroud">#E0E0E0</color>
+
 </resources>
