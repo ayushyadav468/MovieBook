@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerAdapter = new RecyclerListViewAdapter(this, arrayList);
 
         recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MoviesList> call, Throwable t) {
-                Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_LONG).show();
             }
 
         });
