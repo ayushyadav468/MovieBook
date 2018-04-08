@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ayushyadav.moviebook.Constants.Key;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static com.example.ayushyadav.moviebook.Activities.MainActivity.mapGenre;
 
 /**
  * Created by ayushyadav on 20/03/18.
@@ -19,11 +22,11 @@ import java.util.ArrayList;
 public class RecyclerListViewAdapter extends RecyclerView.Adapter<RecyclerListViewAdapter.UserViewHolder>{
 
     Context context;
-    ArrayList<imdbData.nowShowingData> dataArraylist;
+    ArrayList<imdbData.nowShowingData> nowShowingDataArrayList;
 
     public RecyclerListViewAdapter(Context context, ArrayList<imdbData.nowShowingData> dataArraylist) {
         this.context = context;
-        this.dataArraylist = dataArraylist;
+        this.nowShowingDataArrayList = dataArraylist;
     }
 
     @Override
@@ -36,16 +39,23 @@ public class RecyclerListViewAdapter extends RecyclerView.Adapter<RecyclerListVi
 
     @Override
     public void onBindViewHolder(final UserViewHolder holder, int position) {
-        imdbData.nowShowingData data = dataArraylist.get(position);
+        imdbData.nowShowingData data = nowShowingDataArrayList.get(position);
         holder.title.setText(data.getTitle());
         holder.stars.setText(data.getStars());
-        holder.genre.setText((CharSequence) data.getGenre());
+
+        //Convert Genre id to Text
+
+        String genreText = "";
+        for(int gen : data.getGenre()){
+            genreText = genreText + " " + mapGenre.get(gen);
+        }
+        holder.genre.setText(genreText);
         Picasso.get().load(Key.posterSizeURL + data.getPoster()).into(holder.poster);
     }
 
     @Override
     public int getItemCount() {
-        return dataArraylist.size();
+        return nowShowingDataArrayList.size();
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder{

@@ -1,5 +1,7 @@
 package com.example.ayushyadav.moviebook;
 
+import com.example.ayushyadav.moviebook.Constants.Key;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -11,7 +13,10 @@ import retrofit2.http.GET;
 
 public interface ApiCallInterface {
 
-    @GET("movie/now_playing?api_key=" + Key.apiKey + "&language=en-US&page=1")
+    @GET(Key.upCommingMoviesURL)
     Call<MoviesList> getData();
+
+    @GET(Key.genreURL)
+    Call<GenreArrayList> allGenreCall();
 
 }

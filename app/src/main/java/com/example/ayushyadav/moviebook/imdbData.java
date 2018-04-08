@@ -10,17 +10,17 @@ import java.util.List;
 
 public class imdbData {
 
-    class nowShowingData {
+    public static class nowShowingData {
         @SerializedName("title")
         private String title;
         @SerializedName("genre_ids")
-        private List<Genres> genre;
+        private List<Integer> genre;
         @SerializedName("vote_average")
         private String stars;
-        @SerializedName("poster_path")
+        @SerializedName("backdrop_path")
         private String poster;
 
-        public nowShowingData(String title, List<Genres> genre, String stars, String poster) {
+        public nowShowingData(String title, List<Integer> genre, String stars, String poster) {
             this.title = title;
             this.genre = genre;
             this.stars = stars;
@@ -35,11 +35,11 @@ public class imdbData {
             this.title = title;
         }
 
-        public List<Genres> getGenre() {
+        public List<Integer> getGenre() {
             return genre;
         }
 
-        public void setGenre(List<Genres> genre) {
+        public void setGenre(List<Integer> genre) {
             this.genre = genre;
         }
 
@@ -60,11 +60,11 @@ public class imdbData {
         }
     }
 
-    class upcomingData{
+    public class upcomingData{
 
     }
 
-    class topRatedData{
+    public class topRatedData{
 
     }
 

@@ -11,6 +11,17 @@ import java.util.ArrayList;
 public class MoviesList {
 
     @SerializedName("results")
-    ArrayList<imdbData.nowShowingData> results;
+    public ArrayList<imdbData.nowShowingData> results;
 
+    public MoviesList(ArrayList<imdbData.nowShowingData> results) {
+        this.results = results;
+    }
+
+    public ArrayList<imdbData.nowShowingData> getResults() {
+        return results;
+    }
+
+    public void setResults(ArrayList<imdbData.nowShowingData> results) {
+        this.results = results;
+    }
 }

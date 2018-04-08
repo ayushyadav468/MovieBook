@@ -7,10 +7,12 @@
         <item
             android:id="@+id/nav_movies"
             android:iconTint="@android:color/darker_gray"
+            android:icon="@drawable/ic_movie"
             android:title="Movies" />
         <item
             android:id="@+id/nav_tv_shows"
             android:iconTint="@android:color/darker_gray"
+            android:icon="@drawable/ic_tv_show"
             android:title="TV Shows" />
     </group>
 
