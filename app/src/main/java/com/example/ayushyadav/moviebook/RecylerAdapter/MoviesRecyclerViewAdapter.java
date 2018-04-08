@@ -1,4 +1,4 @@
-package com.example.ayushyadav.moviebook;
+package com.example.ayushyadav.moviebook.RecylerAdapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ayushyadav.moviebook.Constants.Key;
+import com.example.ayushyadav.moviebook.R;
+import com.example.ayushyadav.moviebook.ImdbData;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,43 +21,43 @@ import static com.example.ayushyadav.moviebook.Activities.MainActivity.mapGenre;
  * Created by ayushyadav on 20/03/18.
  */
 
-public class RecyclerListViewAdapter extends RecyclerView.Adapter<RecyclerListViewAdapter.UserViewHolder>{
+public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MoviesRecyclerViewAdapter.UserViewHolder>{
 
     Context context;
-    ArrayList<imdbData.nowShowingData> nowShowingDataArrayList;
+    ArrayList<ImdbData> DataArrayList;
 
-    public RecyclerListViewAdapter(Context context, ArrayList<imdbData.nowShowingData> dataArraylist) {
+    public MoviesRecyclerViewAdapter(Context context, ArrayList<ImdbData> dataArrayList) {
         this.context = context;
-        this.nowShowingDataArrayList = dataArraylist;
+        this.DataArrayList = dataArrayList;
     }
 
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = layoutInflater.inflate(R.layout.now_showing_layout, parent,false);
+        View itemView = layoutInflater.inflate(R.layout.movies_layout, parent,false);
         UserViewHolder holder = new UserViewHolder(itemView);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(final UserViewHolder holder, int position) {
-        imdbData.nowShowingData data = nowShowingDataArrayList.get(position);
+        ImdbData data = DataArrayList.get(position);
         holder.title.setText(data.getTitle());
         holder.stars.setText(data.getStars());
 
         //Convert Genre id to Text
-
         String genreText = "";
         for(int gen : data.getGenre()){
             genreText = genreText + " " + mapGenre.get(gen);
         }
         holder.genre.setText(genreText);
+
         Picasso.get().load(Key.posterSizeURL + data.getPoster()).into(holder.poster);
     }
 
     @Override
     public int getItemCount() {
-        return nowShowingDataArrayList.size();
+        return DataArrayList.size();
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder{

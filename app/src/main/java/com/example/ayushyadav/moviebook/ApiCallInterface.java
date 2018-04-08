@@ -13,10 +13,15 @@ import retrofit2.http.GET;
 
 public interface ApiCallInterface {
 
-    @GET(Key.upCommingMoviesURL)
-    Call<MoviesList> getData();
+    @GET(Key.nowPlayingMoviesURL) Call<MoviesList> nowPlayingMoviesData();
 
-    @GET(Key.genreURL)
-    Call<GenreArrayList> allGenreCall();
+    @GET(Key.topRatedMoviesURL) Call<MoviesList> topRatedMoviesData();
+
+    @GET(Key.upComingMoviesURL) Call<MoviesList> upComingMoviesData();
+
+    @GET(Key.popularMoviesURL) Call<MoviesList> popularMoviesData();
+
+    @GET(Key.genreURL) Call<GenreArrayList> allGenreCall();
+
 
 }
